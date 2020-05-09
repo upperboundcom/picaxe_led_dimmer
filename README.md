@@ -13,7 +13,7 @@ But, I'm using a 08M2 which has some limitations:
 1. There's no map() function
 1. The map() function uses long int math which is not supported on the 08M2. So, just copying the formula from the Arduino map() reference is not going to work. 
 
-We'll have work with 2 byte words. 
+We'll just have to work with 2 byte words. 
 
 This code uses the same formula as the Arduino map() function but divides the 1 and 2 bytes into 4 pieces before doing the multipication to avoid long int overflows. Everything gets multipled by 4 at the end to get a final value that will fit into a 2 byte word needed for pwmout.
 
