@@ -1,0 +1,71 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    // https://code.visualstudio.com/docs/editor/tasks
+    "version": "2.0.0",
+    "windows": {
+        //Windows path to desired compiler - edit as required
+        "command": "C:\\Program Files (x86)\\Revolution Education\\Blockly\\Compilers\\picaxe08m2.exe",
+        //Windows AXE027 COM port number - edit as required
+        "args": ["-cCOM5"]
+    },
+    "linux": {
+        //Linux path to desired compiler - edit as required
+        //To run 32 bit compiler on 64 bit > sudo apt-get install gcc-multilib
+        //Ensure compilers have executable permnission 
+        "command": "~/Documents/picaxe/compilers/picaxe08m2",
+        //Linux AXE027 port.
+        //For port access > sudo adduser <your-user-name> dialout
+        "args": ["-c/dev/ttyUSB0"]
+    },
+    "osx": {
+        //Mac path to desired compiler - edit as required
+        "command": "/path/to/compiler/picaxe08m2.exe",
+        //Mac AXE027 port - edit xxxx to your cable numebr
+        "args": ["-c/dev/tty.usbserial-xxxx"]
+    },
+    "isShellCommand": false,
+    "showOutput": "always",
+    "echoCommand": false,
+    "suppressTaskName": true,
+    "tasks": [
+        {
+            "taskName": "PICAXE syntax check",
+            "isTestCommand": true,
+            "args": [
+                "-s",
+                "${file}"
+            ]
+        },
+        {
+            "taskName": "PICAXE program",
+            "isBuildCommand": true,
+            "args": [
+                "${file}"
+            ],
+            "problemMatcher": [],
+            "label": "PICAXE program"
+        },
+        {
+            "taskName": "PICAXE firmware check",
+            "args": [
+                "-f",
+                "${file}"
+            ]
+        },
+        {
+            "taskName": "PICAXE program and debug",
+            "args": [
+                "-d",
+                "${file}"
+            ]
+        },
+        {
+            "taskName": "PICAXE program with sertxd display",
+            "args": [
+                "-t",
+                "${file}"
+            ]
+        }
+    ]
+}
